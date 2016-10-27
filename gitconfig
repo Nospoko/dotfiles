@@ -1,0 +1,17 @@
+[user]
+	name = Mircea Eliade
+	email = roszcz@gmail.com
+[alias]
+	po = push origin
+	st = status -sb
+	lg = log --graph --abbrev-commit --decorate --date=relative --all --oneline 
+	lgk = log --graph --abbrev-commit --decorate --date=relative --all --oneline -10
+	df = diff HEAD
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = true
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
