@@ -11,13 +11,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
-Plugin 'https://github.com/PanTomaszRoszczynialski/Vim-Star-Search.git'
+Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
 Plugin 'https://github.com/ervandew/supertab.git'
 Plugin 'https://github.com/widox/vim-buffer-explorer-plugin.git'
 Plugin 'https://github.com/ihacklog/HiCursorWords.git'
-Plugin 'https://github.com/PanTomaszRoszczynialski/python-syntax.git'
+Plugin 'https://github.com/roszcz/python-syntax.git'
 Plugin 'https://github.com/tomtom/tcomment_vim.git'
 Plugin 'https://github.com/flazz/vim-colorschemes.git'
+Plugin 'https://github.com/pangloss/vim-javascript'
+Plugin 'https://github.com/StanAngeloff/php.vim.git'
 
 " Plugins here
 "
@@ -47,7 +49,13 @@ set t_Co=256
 " colorscheme badwolf
 " colorscheme dark-ruby
 " colorscheme gotham256
-colorscheme 256-grayvim
+" colorscheme 256-grayvim
+" colorscheme peachpuff
+" colorscheme landscape
+colorscheme Tomorrow-Night-Bright
+colorscheme CandyPaper
+" colorscheme PaperColor
+" colorscheme Revolution
 
 set number
 syntax on
@@ -84,6 +92,11 @@ let g:miniBufExplModSelTarget = 1
 " Space as a Leader
 let mapleader=" "
 
+" Paste properly
+" set pastetoggle=<F2>
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
 
 " My own shortcut for 'de-highlightning' search results
 map <Leader>h :noh <CR>
@@ -101,3 +114,12 @@ map <C-c> :TComment<CR>
 
 " NERDTree toggle Qt style 
 map <Leader>0 :NERDTreeToggle<CR>
+
+" Do not show in the nerd tree
+let NERDTreeIgnore = ['\.pyc$', '\.png$']
+
+" Search tags
+map <C-k> :tag 
+
+" Always show status
+set laststatus=2

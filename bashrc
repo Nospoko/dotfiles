@@ -110,3 +110,22 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 # added by travis gem
 [ -f /home/adam/.travis/travis.sh ] && source /home/adam/.travis/travis.sh
+
+# Number of lines in a file
+cali() {
+    cat $1 | wc -l
+}
+export PATH="$PATH:/opt/mssql-tools/bin"
+
+# Some coloring experiments
+# . ~/dotfiles/bashscipts/bash_prompt.sh
+git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
+YELLOW="\[\033[1;33m\]"
+# HOST='\033[02;36m\]\h';
+HOST='\033[02;36m\h';
+TIME='\033[01;31m\t\033[01;32m'
+LOCATION='\033[01;34m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
+BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
+PS1=$TIME'|'$USER"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
+# PS1=$HOST
+PS2='\[\033[01;36m\]>'
