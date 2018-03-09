@@ -20,6 +20,8 @@ Plugin 'https://github.com/tomtom/tcomment_vim.git'
 Plugin 'https://github.com/flazz/vim-colorschemes.git'
 Plugin 'https://github.com/pangloss/vim-javascript'
 Plugin 'https://github.com/StanAngeloff/php.vim.git'
+Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
+Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 
 " Plugins here
 "
@@ -54,6 +56,7 @@ set t_Co=256
 " colorscheme landscape
 colorscheme Tomorrow-Night-Bright
 colorscheme CandyPaper
+" colorscheme goodwolf
 " colorscheme PaperColor
 " colorscheme Revolution
 

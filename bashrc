@@ -108,6 +108,7 @@ fi
 # Alias for vim colors to work pretty in tmux
 alias tmux="TERM=screen-256color-bce tmux"
 
+# FIXME not adam!
 # added by travis gem
 [ -f /home/adam/.travis/travis.sh ] && source /home/adam/.travis/travis.sh
 
@@ -129,3 +130,8 @@ BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
 PS1=$TIME'|'$USER"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
 # PS1=$HOST
 PS2='\[\033[01;36m\]>'
+
+# Alias for ngrok
+alias ngrok=/home/john/soft/ngrok
+alias prp="pipenv run python"
+alias prun="pipenv run"
