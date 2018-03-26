@@ -69,7 +69,7 @@ augroup filetypedetect
 augroup end
 
 " Custom comment style for lammps
-call tcomment#DefineType('lammps', '# %s')
+call tcomment#type#Define('lammps', '# %s')
 
 filetype on
 filetype plugin on
