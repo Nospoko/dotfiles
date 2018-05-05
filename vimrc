@@ -18,10 +18,13 @@ Plugin 'https://github.com/ihacklog/HiCursorWords.git'
 Plugin 'https://github.com/roszcz/python-syntax.git'
 Plugin 'https://github.com/tomtom/tcomment_vim.git'
 Plugin 'https://github.com/flazz/vim-colorschemes.git'
-Plugin 'https://github.com/pangloss/vim-javascript'
+Plugin 'https://github.com/roszcz/vim-javascript'
 Plugin 'https://github.com/StanAngeloff/php.vim.git'
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plugin 'https://github.com/LucHermitte/VimFold4C.git'
+Plugin 'https://github.com/nvie/vim-flake8.git'
+Plugin 'https://github.com/nikvdp/ejs-syntax'
+Plugin 'https://github.com/mxw/vim-jsx.git'
 
 " Plugins here
 "
@@ -55,10 +58,13 @@ set t_Co=256
 " colorscheme peachpuff
 " colorscheme landscape
 colorscheme Tomorrow-Night-Bright
-colorscheme CandyPaper
+" colorscheme CandyPaper
 " colorscheme goodwolf
 " colorscheme PaperColor
 " colorscheme Revolution
+colorscheme obsidian
+
+au BufRead,BufNewFile *.html set filetype=htmlm4
 
 set number
 syntax on
@@ -68,6 +74,7 @@ augroup filetypedetect
     au BufRead,BufNewFile *.lamps setf lammps
 augroup end
 
+
 " Custom comment style for lammps
 call tcomment#type#Define('lammps', '# %s')
 
@@ -76,10 +83,18 @@ filetype plugin on
 filetype indent on
 
 " spaces in a tab
-set tabstop=8
-set softtabstop=4
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" set autoindent
+"
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
-set autoindent
+" On pressing tab, insert 4 spaces
+set expandtab
+
 
 set nocompatible
 set encoding=utf-8
@@ -100,6 +115,9 @@ let mapleader=" "
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" Switch function parameters (param1, param2) -> (param2, param1)
+nmap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><C-o>:noh<CR>
 
 " My own shortcut for 'de-highlightning' search results
 map <Leader>h :noh <CR>

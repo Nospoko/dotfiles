@@ -125,7 +125,7 @@ YELLOW="\[\033[1;33m\]"
 # HOST='\033[02;36m\]\h';
 HOST='\033[02;36m\h';
 TIME='\033[01;31m\t\033[01;32m'
-LOCATION='\033[01;35m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
+LOCATION='\033[02;37m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
 PS1=$TIME'|'$USER"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
 # PS1=$HOST
@@ -135,3 +135,7 @@ PS2='\[\033[01;36m\]>'
 alias ngrok=/home/john/soft/ngrok
 alias prp="pipenv run python"
 alias prun="pipenv run"
+pykernenv () {
+    pipenv install ipykernel
+    prp -m ipykernel install --user --name="$1"
+}
