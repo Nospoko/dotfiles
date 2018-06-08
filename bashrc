@@ -139,3 +139,5 @@ pykernenv () {
     pipenv install ipykernel
     prp -m ipykernel install --user --name="$1"
 }
+
+. /home/john/dotfiles/bashscipts/z.sh

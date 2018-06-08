@@ -56,13 +56,16 @@ set t_Co=256
 " colorscheme gotham256
 " colorscheme 256-grayvim
 " colorscheme peachpuff
+" Great for js
 " colorscheme landscape
-colorscheme Tomorrow-Night-Bright
+" colorscheme Tomorrow-Night-Bright
 " colorscheme CandyPaper
 " colorscheme goodwolf
-" colorscheme PaperColor
 " colorscheme Revolution
-colorscheme obsidian
+" colorscheme obsidian
+colorscheme molokai
+" This is bright
+" colorscheme PaperColor
 
 au BufRead,BufNewFile *.html set filetype=htmlm4
 
