@@ -140,4 +140,19 @@ pykernenv () {
     prp -m ipykernel install --user --name="$1"
 }
 
-. /home/john/dotfiles/bashscipts/z.sh
+# . /home/john/dotfiles/bashscipts/z.sh
+export CLICOLOR=1
+
+alias ctags='/usr/local/bin/ctags'
+eval "$(pyenv init -)"
+# [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
+# Proper ls colors on MAC
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
+if [ -f ~/dotfiles/git-completion.bash ]; then
+  . ~/dotfiles/git-completion.bash
+fi

@@ -14,7 +14,7 @@ Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
 Plugin 'https://github.com/ervandew/supertab.git'
 Plugin 'https://github.com/widox/vim-buffer-explorer-plugin.git'
-Plugin 'https://github.com/ihacklog/HiCursorWords.git'
+Plugin 'https://github.com/roszcz/hicursorwords'
 Plugin 'https://github.com/roszcz/python-syntax.git'
 Plugin 'https://github.com/tomtom/tcomment_vim.git'
 Plugin 'https://github.com/roszcz/vim-colorschemes.git'
@@ -25,6 +25,7 @@ Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 Plugin 'https://github.com/nvie/vim-flake8.git'
 Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
+Plugin 'https://github.com/roszcz/vim256-color.git'
 
 " Plugins here
 "
