@@ -13,6 +13,7 @@ else
     ln -s $PWD/gitignore $HOME/.gitignore
     mv $HOME/.bashrc $HOME/.oldrc
     ln -s $PWD/bashrc $HOME/.bashrc
+    ln -s $PWD/bashrc $HOME/.bash_profile
     ln -s $PWD/vimrc $HOME/.vimrc
     ln -s $PWD/vim $HOME/.vim
 
