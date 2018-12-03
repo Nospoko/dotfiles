@@ -140,8 +140,13 @@ pykernenv () {
     prp -m ipykernel install --user --name="$1"
 }
 
+export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
 if [ -f $HOME/dotfiles/git-completion.sh ]; then
   . $HOME/dotfiles/git-completion.sh
 fi
+
+export PATH="~/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
