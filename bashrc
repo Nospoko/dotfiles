@@ -140,4 +140,11 @@ pykernenv () {
     prp -m ipykernel install --user --name="$1"
 }
 
-. /home/john/dotfiles/bashscipts/z.sh
+export WORKON_HOME=~/.virtualenvs
+. /usr/local/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
+
+alias ls='ls -alh --color=auto'
+
+# Filestack gpu-instance specific 
+export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64/

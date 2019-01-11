@@ -10,15 +10,18 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'itchyny/lightline.vim'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
+Plugin 'https://github.com/roszcz/vim-zoom'
 Plugin 'https://github.com/ervandew/supertab.git'
 Plugin 'https://github.com/widox/vim-buffer-explorer-plugin.git'
-Plugin 'https://github.com/ihacklog/HiCursorWords.git'
+Plugin 'https://github.com/roszcz/hicursorwords'
 Plugin 'https://github.com/roszcz/python-syntax.git'
 Plugin 'https://github.com/tomtom/tcomment_vim.git'
 Plugin 'https://github.com/roszcz/vim-colorschemes.git'
 Plugin 'https://github.com/roszcz/vim-javascript'
+Plugin 'https://github.com/roszcz/syntastic.git'
 Plugin 'https://github.com/StanAngeloff/php.vim.git'
 Plugin 'https://github.com/octol/vim-cpp-enhanced-highlight.git'
 Plugin 'https://github.com/LucHermitte/VimFold4C.git'
@@ -147,3 +150,29 @@ map <C-k> :tag
 
 " Always show status
 set laststatus=2
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_post_args="--max-line-length=120"
+
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
