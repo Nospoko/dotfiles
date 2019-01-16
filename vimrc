@@ -134,7 +134,7 @@ map <Leader>e :BufExplorer<CR>
 " " Uber good saving files
 map <Leader>w :w <CR> :echo "Is he live or dead? Has he thoughts within his head?"<CR>
 " Maybe quit if needed
-map <Leader>q :wq <CR> :echo "Wydupa i zapis" <CR>
+map <Leader>q :wq <CR> :echo "save and quit" <CR>
 
 " Autocomment
 map <C-c> :TComment<CR>
@@ -161,6 +161,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_post_args="--max-line-length=120"
+
+
+" Syntactic toggle
+map <Leader>s :SyntasticToggleMode <CR>
 
 let g:lightline = {
       \ 'component_function': {
