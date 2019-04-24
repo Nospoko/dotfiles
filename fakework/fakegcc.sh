@@ -11,7 +11,8 @@ collect()
     done
 }
 
-sse="$(awk '/flags/{print;exit}' </proc/cpuinfo|grep -o 'sse\S*'|sed 's/^/-m/'|xargs)"
+sse="$(awk '/flags/{print;exit}' </usr/sbin/sysctl -a | grep machdep.cpu|grep -o 'sse\S*'|sed 's/^/-m/'|xargs)"
+
 
 flags=""
 pd="\\"

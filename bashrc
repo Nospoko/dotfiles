@@ -147,6 +147,6 @@ if [ -f $HOME/dotfiles/git-completion.sh ]; then
   . $HOME/dotfiles/git-completion.sh
 fi
 
-export PATH="~/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+export WORKON_HOME=~/.virtualenvs
+. /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
