@@ -11,6 +11,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'https://github.com/vim-airline/vim-airline.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
 Plugin 'https://github.com/google/vim-searchindex.git'
@@ -29,6 +31,8 @@ Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 Plugin 'https://github.com/nvie/vim-flake8.git'
 Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
+Plugin 'https://github.com/roszcz/vim256-color.git'
+Plugin 'sainnhe/vim-color-forest-night'
 
 " Plugins here
 "
@@ -68,8 +72,9 @@ set t_Co=256
 " colorscheme Revolution
 " colorscheme obsidian
 colorscheme molokai
-" This is bright
 " colorscheme PaperColor
+colorscheme 256_asu1dark
+colorscheme kolor
 
 au BufRead,BufNewFile *.html set filetype=htmlm4
 
@@ -161,7 +166,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args="--max-line-length=120"
+let g:syntastic_python_flake8_post_args="--max-line-length=140"
 let g:syntastic_quiet_messages = { 'regex': 'W605' }
 
 
@@ -182,3 +187,6 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+" This solves the inverted parenthesis highlight
+hi! MatchParen cterm=NONE,bold gui=NONE,bold ctermbg=15 guibg=#fdf6e3 ctermfg=12 guifg=#839496

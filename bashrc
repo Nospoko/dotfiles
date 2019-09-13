@@ -150,3 +150,6 @@ fi
 export WORKON_HOME=~/.virtualenvs
 . /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
+
+# WTF MAC
+export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
