@@ -143,13 +143,6 @@ pykernenv () {
 export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
-if [ -f $HOME/dotfiles/git-completion.sh ]; then
-  . $HOME/dotfiles/git-completion.sh
-fi
-
-export WORKON_HOME=~/.virtualenvs
-. /Library/Frameworks/Python.framework/Versions/3.6/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
-
-# WTF MAC
-export PATH=$PATH:/usr/local/git/bin:/usr/local/bin
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source $HOME/.local/bin/virtualenvwrapper.sh
