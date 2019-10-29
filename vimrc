@@ -12,6 +12,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'https://github.com/pedrohdz/vim-yaml-folds.git'
 Plugin 'https://github.com/vim-airline/vim-airline.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
@@ -191,3 +192,5 @@ endfunction
 
 " This solves the inverted parenthesis highlight
 hi! MatchParen cterm=NONE,bold gui=NONE,bold ctermbg=15 guibg=#fdf6e3 ctermfg=12 guifg=#839496
+
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
