@@ -124,10 +124,10 @@ git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/';
 YELLOW="\[\033[1;33m\]"
 # HOST='\033[02;36m\]\h';
 HOST='\033[02;36m\h';
-TIME='\033[01;31m\t\033[01;32m'
+TIME='\033[38;5;135m\t\033[01;32m'
 LOCATION='\033[02;37m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
-PS1=$TIME'|'$USER"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
+PS1=$TIME'|'"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
 # PS1=$HOST
 PS2='\[\033[01;36m\]>'
 
@@ -140,11 +140,18 @@ pykernenv () {
     prp -m ipykernel install --user --name="$1"
 }
 
-export WORKON_HOME=~/.virtualenvs
-. /usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
+# export WORKON_HOME=~/.virtualenvs
+# . /usr/local/bin/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
 
 alias ls='ls -alh --color=auto'
 
 # Filestack gpu-instance specific 
 export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64/
+eval "$(pyenv init -)"
+
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export WORKON_HOME=$HOME/.virtualenvs
+pyenv virtualenvwrapper_lazy
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

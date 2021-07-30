@@ -28,6 +28,8 @@ Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 Plugin 'https://github.com/nvie/vim-flake8.git'
 Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
 
 " Plugins here
 "
@@ -66,7 +68,8 @@ set t_Co=256
 " colorscheme goodwolf
 " colorscheme Revolution
 " colorscheme obsidian
-colorscheme molokai
+" colorscheme molokai
+colorscheme Tomorrow-Night
 " This is bright
 " colorscheme PaperColor
 
@@ -180,3 +183,12 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+let g:syntastic_python_flake8_post_args="--max-line-length=150"
+
+set rtp+=/usr/local/opt/fzf                                                                                                
+set wildmode=list:longest,list:full                                                                                        
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__                                                                     
+" let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -    path 'venv/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"                         
+                                                                                                                           
+map <Leader>f :Files <CR>  
