@@ -132,7 +132,6 @@ PS1=$TIME'|'"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
 PS2='\[\033[01;36m\]>'
 
 # Alias for ngrok
-alias ngrok=/home/john/soft/ngrok
 alias prp="pipenv run python"
 alias prun="pipenv run"
 pykernenv () {
@@ -155,3 +154,13 @@ export WORKON_HOME=$HOME/.virtualenvs
 pyenv virtualenvwrapper_lazy
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+alias ta='tmux a'
+
+alias qt-vpn='sudo openvpn --config $HOME/secrets/quoretech/vpnclient.ovpn'
+alias watch-gpu='watch -n 1 nvidia-smi'
+htp-server () {
+    workon http-server
+    python -m http.server --cgi ${1:-8000}
+}
+. "$HOME/.cargo/env"

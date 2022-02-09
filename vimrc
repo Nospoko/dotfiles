@@ -30,6 +30,9 @@ Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'Yggdroot/indentLine'
+Plugin 'tpope/vim-markdown'
 
 " Plugins here
 "
@@ -69,7 +72,8 @@ set t_Co=256
 " colorscheme Revolution
 " colorscheme obsidian
 " colorscheme molokai
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
+colorscheme afterglow
 " This is bright
 " colorscheme PaperColor
 
@@ -146,7 +150,7 @@ map <C-c> :TComment<CR>
 map <Leader>0 :NERDTreeToggle<CR>
 
 " Do not show in the nerd tree
-let NERDTreeIgnore = ['\.pyc$', '\.png$']
+let NERDTreeIgnore = ['\.pyc$', '\.png$', '^__pycache__$']
 
 " Search tags
 map <C-k> :tag 
@@ -192,3 +196,38 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -    path 'venv/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"                         
                                                                                                                            
 map <Leader>f :Files <CR>  
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+map <Leader>d :IndentLinesToggle <CR>
+
+set shortmess-=S
+
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^# .*$'
+        return ">1"
+    endif
+    if getline(v:lnum) =~ '^## .*$'
+        return ">2"
+    endif
+    if getline(v:lnum) =~ '^### .*$'
+        return ">3"
+    endif
+    if getline(v:lnum) =~ '^#### .*$'
+        return ">4"
+    endif
+    if getline(v:lnum) =~ '^##### .*$'
+        return ">5"
+    endif
+    if getline(v:lnum) =~ '^###### .*$'
+        return ">6"
+    endif
+    return "=" 
+endfunction
+au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
+au BufEnter *.md setlocal foldmethod=expr    
+
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+" set conceallevel=0
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
