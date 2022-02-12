@@ -11,6 +11,8 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
+" Plugin 'jlanzarotta/bufexplorer'
+Plugin 'https://github.com/pedrohdz/vim-yaml-folds.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/roszcz/Vim-Star-Search.git'
 Plugin 'https://github.com/roszcz/vim-zoom'
@@ -28,6 +30,11 @@ Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 Plugin 'https://github.com/nvie/vim-flake8.git'
 Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
+Plugin 'https://github.com/roszcz/vim256-color.git'
+Plugin 'https://github.com/phelipetls/vim-hugo.git'
+Plugin 'junegunn/fzf.vim'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'tpope/vim-markdown'
 
 " Plugins here
 "
@@ -69,6 +76,8 @@ set t_Co=256
 colorscheme molokai
 " This is bright
 " colorscheme PaperColor
+colorscheme strange
+colorscheme afterglow
 
 au BufRead,BufNewFile *.html set filetype=htmlm4
 
@@ -160,7 +169,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_post_args="--max-line-length=120"
+let g:syntastic_python_flake8_post_args="--max-line-length=150"
 
 
 " Syntactic toggle
@@ -180,3 +189,68 @@ function! LightlineFilename()
   endif
   return expand('%')
 endfunction
+
+set fileformat=unix
+set fileformats=unix,dos
+
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+autocmd Filetype yaml setlocal ts=2 sw=2 sts=0 expandtab
+
+function! Send_to_tmux(visual, count) range abort
+    if (a:visual)
+        execute "normal! gv\"zy"
+    else
+        execute "normal! \"zyip"
+    endif
+    let text = @z
+    let text = substitute(text, ';', '\\;', 'g')
+    let text = substitute(text, '"', '\\"', 'g')
+    let text = substitute(text, '\n', '" Enter "', 'g')
+    let text = substitute(text, '!', '\\!', 'g')
+    let text = substitute(text, '%', '\\%', 'g')
+    let text = substitute(text, '#', '\\#', 'g')
+    silent execute "!tmux send-keys -t " . a:count . " -- \"" . text . "\""
+    silent execute "!tmux send-keys -t " . a:count . "Enter"
+endfunction
+nnoremap <Leader>p :<C-u>call Send_to_tmux(0, v:count1)<CR>
+xnoremap <Leader>p :<C-u>call Send_to_tmux(1, v:count1)<CR>
+
+"" fzf.vim
+set rtp+=/usr/local/opt/fzf
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
+let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'venv/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
+
+map <Leader>f :Files <CR>
+
+"" Show number of finds on the bottom right
+set shortmess-=S
+
+"" Go to the next tag hit
+map <Leader>] :tn <CR>
+
+function! MarkdownLevel()
+    if getline(v:lnum) =~ '^# .*$'
+        return ">1"
+    endif
+    if getline(v:lnum) =~ '^## .*$'
+        return ">2"
+    endif
+    if getline(v:lnum) =~ '^### .*$'
+        return ">3"
+    endif
+    if getline(v:lnum) =~ '^#### .*$'
+        return ">4"
+    endif
+    if getline(v:lnum) =~ '^##### .*$'
+        return ">5"
+    endif
+    if getline(v:lnum) =~ '^###### .*$'
+        return ">6"
+    endif
+    return "=" 
+endfunction
+au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
+au BufEnter *.md setlocal foldmethod=expr     
+
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']

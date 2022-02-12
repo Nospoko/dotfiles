@@ -3,6 +3,7 @@
 	email = roszcz@gmail.com
 [alias]
 	po = push origin
+    gr = grep -n
 	st = status -sb
 	lg = log --graph --abbrev-commit --decorate --date=relative --all --oneline 
 	lgk = log --graph --abbrev-commit --decorate --date=relative --all --oneline -10
@@ -16,3 +17,4 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
+	autocrlf = input

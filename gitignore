@@ -11,3 +11,5 @@
 *.zip
 
 *ipynb_check*
+
+.DS_Store

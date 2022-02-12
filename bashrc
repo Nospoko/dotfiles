@@ -124,10 +124,10 @@ git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/';
 YELLOW="\[\033[1;33m\]"
 # HOST='\033[02;36m\]\h';
 HOST='\033[02;36m\h';
-TIME='\033[01;31m\t\033[01;32m'
-LOCATION='\033[02;37m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
+TIME='\033[01;94m\t\033[01;32m'
+LOCATION='\033[38;5;206m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
-PS1=$TIME'|'$USER"$YELLOW|"$HOST$LOCATION"$YELLOW::"$BRANCH
+PS1=$TIME'|'$USER"$YELLOW|"$LOCATION"$YELLOW::"$BRANCH
 # PS1=$HOST
 PS2='\[\033[01;36m\]>'
 
@@ -142,9 +142,38 @@ pykernenv () {
 
 export WORKON_HOME=~/.virtualenvs
 . /usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.6
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
 
-alias ls='ls -alh --color=auto'
+alias ls='ls -alh'
+
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+
 
 # Filestack gpu-instance specific 
 export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64/
+source ~/.git-completion.bash
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+. $(brew --prefix)/etc/bash_completion
+fi
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/rick/google-cloud-sdk/path.bash.inc' ]; then . '/Users/rick/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/rick/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/rick/google-cloud-sdk/completion.bash.inc'; fi
+
+# Setting PATH for Python 3.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
+export PATH
+
+alias ta='tmux a'
+
+export PATH=$(brew --prefix openvpn)/sbin:$PATH
+
+export PATH="$HOME/.poetry/bin:$PATH"
+
+alias ctags='ctags -R --exclude=*.venv*'
