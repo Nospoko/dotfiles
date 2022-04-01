@@ -33,6 +33,8 @@ Plugin 'junegunn/fzf'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-markdown'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'pedrohdz/vim-yaml-folds'
 
 " Plugins here
 "
@@ -225,6 +227,10 @@ function! MarkdownLevel()
 endfunction
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
 au BufEnter *.md setlocal foldmethod=expr    
+au BufEnter *rb setlocal foldmethod=indent
+au BufEnter *yml setlocal foldmethod=indent
+autocmd BufEnter *.yml set ai sw=2 ts=2 sta et fo=croql
+
 
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 

@@ -163,4 +163,13 @@ htp-server () {
     workon http-server
     python -m http.server --cgi ${1:-8000}
 }
-. "$HOME/.cargo/env"
+
+alias ctags='ctags -R --exclude=*.venv*'
+
+# . "$HOME/.cargo/env"
+
+# Ruby env management
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+eval "$(direnv hook bash)"
