@@ -36,6 +36,7 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'tpope/vim-markdown'
+Plugin 'Yggdroot/indentLine'
 
 " Plugins here
 "
@@ -258,3 +259,6 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
 "" https://apple.stackexchange.com/q/173275
 set backspace=indent,eol,start
+
+au BufEnter *rb setlocal foldmethod=indent
+map <Leader>d :IndentLinesToggle <CR>
