@@ -124,7 +124,7 @@ git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/';
 YELLOW="\[\033[1;33m\]"
 # HOST='\033[02;36m\]\h';
 HOST='\033[02;36m\h';
-TIME='\033[01;94m\t\033[01;32m'
+TIME='\033[38;5;132m\t\033[01;32m'
 LOCATION='\033[38;5;206m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
 PS1=$TIME'|'$USER"$YELLOW|"$LOCATION"$YELLOW::"$BRANCH
@@ -154,6 +154,7 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64/
 source ~/.git-completion.bash
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 . $(brew --prefix)/etc/bash_completion
 fi
@@ -177,3 +178,7 @@ export PATH=$(brew --prefix openvpn)/sbin:$PATH
 export PATH="$HOME/.poetry/bin:$PATH"
 
 alias ctags='ctags -R --exclude=*.venv*'
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+. /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
