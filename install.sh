@@ -15,6 +15,7 @@ else
     ln -s $PWD/bashrc $HOME/.bashrc
     ln -s $PWD/vimrc $HOME/.vimrc
     ln -s $PWD/vim $HOME/.vim
+    ln -s $PWD/pryrc $HOME/.pryrc
     ln -s $PWD/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
     echo === Vundling
@@ -24,7 +25,7 @@ else
 fi
 
 # https://apple.stackexchange.com/questions/12993/why-doesnt-bashrc-run-automatically
-echo "if [ -s ~/.bashrc ]; then source ~/.bashrc; fi" >> .profile
+echo "if [ -s ~/.bashrc ]; then source ~/.bashrc; fi" >> $HOME/.profile
 
 # https://apple.stackexchange.com/questions/55875/git-auto-complete-for-branches-at-the-command-line
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
