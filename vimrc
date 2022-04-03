@@ -254,3 +254,6 @@ au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr     
 
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
+"" https://apple.stackexchange.com/q/173275
+set backspace=indent,eol,start

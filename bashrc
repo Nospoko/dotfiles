@@ -119,17 +119,26 @@ cali() {
 export PATH="$PATH:/opt/mssql-tools/bin"
 
 # Some coloring experiments
-# . ~/dotfiles/bashscipts/bash_prompt.sh
+# https://robotmoon.com/256-colors/
+# export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 40)\]@\[$(tput setaf 46)\]\h \[$(tput setaf 154)\]\w \[$(tput sgr0)\]$ "
 git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 YELLOW="\[\033[1;33m\]"
 # HOST='\033[02;36m\]\h';
 HOST='\033[02;36m\h';
 TIME='\033[38;5;132m\t\033[01;32m'
-LOCATION='\033[38;5;206m`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
-BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
-PS1=$TIME'|'$USER"$YELLOW|"$LOCATION"$YELLOW::"$BRANCH
+
+LOCATION='`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
+LOCATION="\[$(tput setaf 34)\]$LOCATION\[$(tput sgr0)\]"
+# BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
+BRANCH='$(git_branch)'
+BRANCH="\[$(tput setaf 154)\]$BRANCH\[$(tput sgr0)\]"
+
+ENDING="\n\[$(tput setaf 40)\]$\[$(tput sgr0)\] "
+
+PS1=$TIME'|'$USER"$YELLOW|"$LOCATION"$YELLOW::"$BRANCH$ENDING
+
 # PS1=$HOST
-PS2='\[\033[01;36m\]>'
+PS2='\[$(tput setaf 82)\]\W $ \[$(tput sgr0)\]'
 
 # Alias for ngrok
 alias ngrok=/home/john/soft/ngrok
