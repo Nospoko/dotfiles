@@ -33,6 +33,7 @@ Plugin 'https://github.com/mxw/vim-jsx.git'
 Plugin 'https://github.com/roszcz/vim256-color.git'
 Plugin 'https://github.com/phelipetls/vim-hugo.git'
 Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'tpope/vim-markdown'
 

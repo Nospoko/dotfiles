@@ -15,6 +15,7 @@ else
     ln -s $PWD/bashrc $HOME/.bashrc
     ln -s $PWD/vimrc $HOME/.vimrc
     ln -s $PWD/vim $HOME/.vim
+    ln -s $PWD/ipython_config.py $HOME/.ipython/profile_default/ipython_config.py
 
     echo === Vundling
     vim +BundleInstall +qall

@@ -102,9 +102,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# for virtualenv functionalities
-#source /usr/local/bin/virtualenvwrapper.sh
-
 # Alias for vim colors to work pretty in tmux
 alias tmux="TERM=screen-256color-bce tmux"
 
@@ -149,10 +146,6 @@ pykernenv () {
     prp -m ipykernel install --user --name="$1"
 }
 
-export WORKON_HOME=~/.virtualenvs
-. /usr/local/bin/virtualenvwrapper.sh
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
-
 alias ls='ls -alh'
 
 export CLICOLOR=1
@@ -189,5 +182,11 @@ export PATH="$HOME/.poetry/bin:$PATH"
 alias ctags='ctags -R --exclude=*.venv*'
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 . /opt/homebrew/opt/asdf/etc/bash_completion.d/asdf.bash
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export VIRTUALENVWRAPPER_PYTHON=$(asdf which python)
+export VIRTUALENVWRAPPER_VIRTUALENV=$(asdf where python)/bin/virtualenv
+export WORKON_HOME=~/.virtualenvs
+. $(asdf where python)/bin/virtualenvwrapper.sh
