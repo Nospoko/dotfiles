@@ -21,3 +21,9 @@ else
 
     echo === Done
 fi
+
+# https://apple.stackexchange.com/questions/12993/why-doesnt-bashrc-run-automatically
+echo "if [ -s ~/.bashrc ]; then source ~/.bashrc; fi" >> .profile
+
+# https://apple.stackexchange.com/questions/55875/git-auto-complete-for-branches-at-the-command-line
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
