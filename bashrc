@@ -27,11 +27,6 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -60,15 +55,6 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -80,11 +66,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -105,55 +86,35 @@ fi
 # Alias for vim colors to work pretty in tmux
 alias tmux="TERM=screen-256color-bce tmux"
 
-# FIXME not adam!
-# added by travis gem
-[ -f /home/adam/.travis/travis.sh ] && source /home/adam/.travis/travis.sh
-
-# Number of lines in a file
-cali() {
-    cat $1 | wc -l
-}
-export PATH="$PATH:/opt/mssql-tools/bin"
-
 # Some coloring experiments
 # https://robotmoon.com/256-colors/
 # export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 40)\]@\[$(tput setaf 46)\]\h \[$(tput setaf 154)\]\w \[$(tput sgr0)\]$ "
-git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
-YELLOW="\[\033[1;33m\]"
-# HOST='\033[02;36m\]\h';
-HOST='\033[02;36m\h';
-TIME='\033[38;5;132m\t\033[01;32m'
+TIME="\[$(tput setaf 94)\]\t\[$(tput sgr0)\]"
+
+USER="\[$(tput setaf 147)\]$USER\[$(tput sgr0)\]"
 
 LOCATION='`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
-LOCATION="\[$(tput setaf 34)\]$LOCATION\[$(tput sgr0)\]"
-# BRANCH='\033[00;33m$(git_branch)\[\033[00m\]\n\$ '
+LOCATION="\[$(tput setaf 135)\]$LOCATION\[$(tput sgr0)\]"
+
+git_branch () { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
 BRANCH='$(git_branch)'
-BRANCH="\[$(tput setaf 154)\]$BRANCH\[$(tput sgr0)\]"
+BRANCH="\[$(tput setaf 159)\]$BRANCH\[$(tput sgr0)\]"
+BRANCH="\[$(tput setaf 226)\]:::\[$(tput sgr0)\]"$BRANCH
 
-ENDING="\n\[$(tput setaf 40)\]$\[$(tput sgr0)\] "
+LEFT_PIPE="\[$(tput bold)$(tput setaf 184)\]|\[$(tput sgr0)\]"
+RIGHT_PIPE="\[$(tput bold)$(tput setaf 184)\]|\[$(tput sgr0)\]"
 
-PS1=$TIME'|'$USER"$YELLOW|"$LOCATION"$YELLOW::"$BRANCH$ENDING
+ENDING="\n\[$(tput setaf 40)\]o_O\[$(tput sgr0)\] "
 
-# PS1=$HOST
+PS1=$TIME$LEFT_PIPE$USER$RIGHT_PIPE$LOCATION$BRANCH$ENDING
+
 PS2='\[$(tput setaf 82)\]\W $ \[$(tput sgr0)\]'
-
-# Alias for ngrok
-alias ngrok=/home/john/soft/ngrok
-alias prp="pipenv run python"
-alias prun="pipenv run"
-pykernenv () {
-    pipenv install ipykernel
-    prp -m ipykernel install --user --name="$1"
-}
 
 alias ls='ls -alh'
 
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-
-# Filestack gpu-instance specific 
-export LD_LIBRARY_PATH=LD_LIBRARY_PATH:/usr/local/cuda-9.0/lib64/
 source ~/.git-completion.bash
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -161,12 +122,6 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 . $(brew --prefix)/etc/bash_completion
 fi
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/rick/google-cloud-sdk/path.bash.inc' ]; then . '/Users/rick/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/rick/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/rick/google-cloud-sdk/completion.bash.inc'; fi
 
 # Setting PATH for Python 3.7
 # The original version is saved in .bash_profile.pysave
