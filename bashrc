@@ -89,7 +89,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 # Some coloring experiments
 # https://robotmoon.com/256-colors/
 # export PS1="\[$(tput setaf 34)\]\u\[$(tput setaf 40)\]@\[$(tput setaf 46)\]\h \[$(tput setaf 154)\]\w \[$(tput sgr0)\]$ "
-TIME="\[$(tput setaf 94)\]\t\[$(tput sgr0)\]"
+TIME="\[$(tput setaf 126)\]\t\[$(tput sgr0)\]"
 
 USER="\[$(tput setaf 147)\]$USER\[$(tput sgr0)\]"
 
@@ -101,10 +101,10 @@ BRANCH='$(git_branch)'
 BRANCH="\[$(tput setaf 159)\]$BRANCH\[$(tput sgr0)\]"
 BRANCH="\[$(tput setaf 226)\]:::\[$(tput sgr0)\]"$BRANCH
 
-LEFT_PIPE="\[$(tput bold)$(tput setaf 184)\]|\[$(tput sgr0)\]"
-RIGHT_PIPE="\[$(tput bold)$(tput setaf 184)\]|\[$(tput sgr0)\]"
+LEFT_PIPE="\[$(tput bold)$(tput setaf 62)\]|\[$(tput sgr0)\]"
+RIGHT_PIPE="\[$(tput bold)$(tput setaf 63)\]|\[$(tput sgr0)\]"
 
-ENDING="\n\[$(tput setaf 40)\]o_O\[$(tput sgr0)\] "
+ENDING="\n\[$(tput setaf 40)\]O_o\[$(tput sgr0)\] "
 
 PS1=$TIME$LEFT_PIPE$USER$RIGHT_PIPE$LOCATION$BRANCH$ENDING
 
@@ -145,3 +145,5 @@ export VIRTUALENVWRAPPER_PYTHON=$(asdf which python)
 export VIRTUALENVWRAPPER_VIRTUALENV=$(asdf where python)/bin/virtualenv
 export WORKON_HOME=~/.virtualenvs
 . $(asdf where python)/bin/virtualenvwrapper.sh
+
+export AWS_PROFILE=NIKE.SSO.AdminRole

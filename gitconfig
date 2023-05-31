@@ -1,6 +1,6 @@
 [user]
 	name = Tomasz Roszczynialski
-	email = roszcz@gmail.com
+	email = tomasz.roszczynialski@nike.com
 [alias]
 	po = push origin
     gr = grep -n

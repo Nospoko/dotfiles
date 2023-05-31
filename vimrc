@@ -37,6 +37,9 @@ Plugin 'junegunn/fzf'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'tpope/vim-markdown'
 Plugin 'Yggdroot/indentLine'
+Plugin 'hashivim/vim-terraform'
+Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'frazrepo/vim-rainbow'
 
 " Plugins here
 "
@@ -143,7 +146,7 @@ map <Leader>m :MBEToggle <CR>
 " Show nicer buf explorer
 map <Leader>e :BufExplorer<CR>
 " " Uber good saving files
-map <Leader>w :w <CR> :echo "Is he live or dead? Has he thoughts within his head?"<CR>
+map <Leader>w :w <CR> :echo "just do it"<CR>
 " Maybe quit if needed
 map <Leader>q :wq <CR> :echo "save and quit" <CR>
 
@@ -262,3 +265,8 @@ set backspace=indent,eol,start
 
 au BufEnter *rb setlocal foldmethod=indent
 map <Leader>d :IndentLinesToggle <CR>
+
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*,*pytest_cache*
+let NERDTreeRespectWildIgnore=1
+
+let g:rainbow_active = 1
