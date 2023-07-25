@@ -69,7 +69,7 @@ set t_Co=256
 " colorscheme Revolution
 " colorscheme obsidian
 " colorscheme molokai
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 " This is bright
 " colorscheme PaperColor
 
@@ -83,9 +83,6 @@ augroup filetypedetect
     au BufRead,BufNewFile *.lamps setf lammps
 augroup end
 
-
-" Custom comment style for lammps
-call tcomment#type#Define('lammps', '# %s')
 
 filetype on
 filetype plugin on
@@ -155,7 +152,9 @@ map <C-k> :tag
 set laststatus=2
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+if exists(":SyntasticStatuslineFlag")
+    set statusline+=%{SyntasticStatuslineFlag()}
+endif
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
