@@ -35,6 +35,8 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'tpope/vim-markdown'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'pedrohdz/vim-yaml-folds'
+Plugin 'frazrepo/vim-rainbow'
+Plugin 'leafgarland/typescript-vim'
 
 " Plugins here
 "
@@ -79,19 +81,11 @@ colorscheme afterglow
 " This is bright
 " colorscheme PaperColor
 
-au BufRead,BufNewFile *.html set filetype=htmlm4
+au BufRead,BufNewFile *.html set filetype=html
+au BufRead,BufNewFile *.conf set filetype=dosini
 
 set number
 syntax on
-
-" Control LAMMPS syntax
-augroup filetypedetect
-    au BufRead,BufNewFile *.lamps setf lammps
-augroup end
-
-
-" Custom comment style for lammps
-call tcomment#type#Define('lammps', '# %s')
 
 filetype on
 filetype plugin on
@@ -124,7 +118,7 @@ let g:miniBufExplModSelTarget = 1
 
 " Space as a Leader
 let mapleader=" "
-
+"
 " Paste properly
 " set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
@@ -170,6 +164,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_post_args="--max-line-length=120"
+let g:syntastic_python_flake8_args='--ignore=E203,W503'
+
 
 
 " Syntactic toggle
@@ -196,7 +192,6 @@ set rtp+=/usr/local/opt/fzf
 set wildmode=list:longest,list:full                                                                                        
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__                                                                     
 " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -    path 'venv/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"                         
-                                                                                                                           
 map <Leader>f :Files <CR>  
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
@@ -225,11 +220,18 @@ function! MarkdownLevel()
     endif
     return "=" 
 endfunction
+
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()  
 au BufEnter *.md setlocal foldmethod=expr    
 au BufEnter *rb setlocal foldmethod=indent
 au BufEnter *yml setlocal foldmethod=indent
 autocmd BufEnter *.yml set ai sw=2 ts=2 sta et fo=croql
+autocmd BufEnter *.js set ai sw=2 ts=2 sta et fo=croql
+autocmd BufEnter *.ts set ai sw=2 ts=2 sta et fo=croql
+autocmd Filetype html setlocal ts=2 sw=2 sts=0 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab foldmethod=indent
+autocmd Filetype typescript setlocal ts=2 sw=2 sts=0 expandtab foldmethod=indent
+autocmd Filetype typescriptreact setlocal ts=2 sw=2 sts=0 expandtab
 
 
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
@@ -237,3 +239,9 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 " set conceallevel=0
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+
+let g:rainbow_active = 1
+
+" // Nerdtree config for wildignore
+set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.min.*
+let NERDTreeRespectWildIgnore=1

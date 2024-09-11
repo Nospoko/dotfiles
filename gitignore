@@ -1,4 +1,9 @@
+.notes
+.plan
+.env 
 *.swp
+
+*.swo
 
 *~
 
@@ -11,3 +16,5 @@
 *.zip
 
 *ipynb_check*
+
+tmp/
