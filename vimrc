@@ -28,6 +28,7 @@ Plugin 'https://github.com/LucHermitte/VimFold4C.git'
 Plugin 'https://github.com/nvie/vim-flake8.git'
 Plugin 'https://github.com/nikvdp/ejs-syntax'
 Plugin 'https://github.com/mxw/vim-jsx.git'
+Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 
