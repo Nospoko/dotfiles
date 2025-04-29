@@ -31,6 +31,7 @@ Plugin 'https://github.com/mxw/vim-jsx.git'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
+Plugin 'habamax/vim-rst'
 
 " Plugins here
 "
@@ -192,3 +193,6 @@ set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
 " let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -    path 'venv/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"                         
                                                                                                                            
 map <Leader>f :Files <CR>  
+
+" My dotplan experiment, everything is rst:
+autocmd BufReadPost,BufNewFile * set syntax=rst
